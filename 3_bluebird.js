@@ -1,3 +1,10 @@
+/*
+  GOAL:
+    Given the file a.txt, read its content.  It contains the name of the next
+    file to load, whose content will be the name of the final file to load.
+    Print the contents of the final file.
+*/
+
 const bluebird = require('bluebird')
 const fs = require('fs')
 
