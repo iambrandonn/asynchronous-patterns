@@ -1,0 +1,22 @@
+{
+  "name": "asynchronous-patterns",
+  "version": "1.0.0",
+  "description": "",
+  "main": "callbacks.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iambrandonn/asynchronous-patterns.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iambrandonn/asynchronous-patterns/issues"
+  },
+  "homepage": "https://github.com/iambrandonn/asynchronous-patterns#readme",
+  "dependencies": {
+    "bluebird": "3.5.1"
+  }
+}
