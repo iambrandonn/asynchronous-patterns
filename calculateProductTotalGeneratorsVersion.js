@@ -27,12 +27,17 @@ function getDiscountInfo() {
 }
 
 Q.spawn(function* () {
-    let cost = yield getCostInfo()
-    let tax = yield getTaxInfo()
-    let discount = yield getDiscountInfo()
+	let costPromise = getCostInfo()
+	let taxPromise = getTaxInfo()
+	let discountPromise = getDiscountInfo()
 
+    let cost = yield costPromise
+    let tax = yield taxPromise
     let total = cost + (tax / 100 * cost)
+
+    let discount = yield discountPromise
     total = total - (discount / 100 * total)
+    
     console.log('Total is ' +  total)
 });
 
