@@ -26,7 +26,6 @@ function getDiscountInfo() {
 	})
 }
 
-let total = 0
 Q.spawn(function* () {
     let cost = yield getCostInfo()
     let tax = yield getTaxInfo()
