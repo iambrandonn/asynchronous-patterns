@@ -1,3 +1,4 @@
+var Q = require('q')
 
 function makeDatabaseCall(valueToFind, resolve) {
     var delay = Math.random() * 10000;
@@ -25,30 +26,17 @@ function getDiscountInfo() {
 	})
 }
 
-
-let costPromise = getCostInfo()
-let taxPromise = getTaxInfo()
-let discountPromise = getDiscountInfo()
-
 let total = 0
-let cost
+Q.spawn(function* () {
+    let cost = yield getCostInfo()
+    let tax = yield getTaxInfo()
+    let discount = yield getDiscountInfo()
 
-costPromise.
-then(function(value) {
-	cost = value
-	total = cost
-	console.log('total is ' +  total)
-	return taxPromise	
-}).then(function(tax) {
-	total = total + (tax / 100 * cost)
-	console.log('total is ' +  total)
-	return discountPromise
-}).then(function(discount) {
-	discount = (discount / 100 * total)
-	total = total - discount
-	console.log('total is ' +  total)
-}).then(function() {
-	console.log('total is ' +  total)
-})
+    let total = cost + (tax / 100 * cost)
+    total = total - (discount / 100 * total)
+    console.log('Total is ' +  total)
+});
+
+
 
 

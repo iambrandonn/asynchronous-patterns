@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/iambrandonn/asynchronous-patterns#readme",
   "dependencies": {
-    "bluebird": "3.5.1"
+    "bluebird": "3.5.1",
+    "q": "1.5.1"
   }
 }
