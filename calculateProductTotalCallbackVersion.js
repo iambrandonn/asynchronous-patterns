@@ -1,10 +1,3 @@
-/*
-Problem statement:
-You are running an ecommerce site and before a person checks out, you need to calculate the total cost of a product in their cart.
-The total cost is the original cost + tax - discount. You need to get each of these values from the database and in order
-to be performant, you need to make all the db calls at the same time and make the calculations as soon as you are able to.
- */
-
 function makeDatabaseCall(valueToFind, cb) {
     var delay = Math.random() * 10000;
     setTimeout(function() {
@@ -51,14 +44,16 @@ function processInfo(infoToFind, valueToProcess) {
     if (infoToFind === "Discount") {
 		discount = valueToProcess;
 		if (cost && tax) {
-	    	total = cost + (tax / 100 * cost) - (discount / 100 * cost)
+	    	total = cost + (tax / 100 * cost) 
+	    	total = total - (discount / 100 * total)
 			processedTotal = true
 		}
     }
 
     if (!processedTotal) {
 		console.log('processing total.....');
-		total = cost + (tax / 100 * cost) - (discount / 100 * cost)
+		total = cost + (tax / 100 * cost)
+		total = total - (discount / 100 * total)
 	}
 
     if(total) {
