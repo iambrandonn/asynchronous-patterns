@@ -38,5 +38,5 @@ Q.spawn(function * () {
   let discount = yield discountPromise
   total = total - discount / 100 * total
 
-  console.log('Total is ' + total)
+  console.log(`Total is ${total}`)
 })

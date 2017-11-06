@@ -36,7 +36,7 @@ async function calculateTotal () {
   let discount = await discountPromise
   total = total - discount / 100 * total
 
-  console.log('Total is ' + total)
+  console.log(`Total is ${total}`)
 }
 
 calculateTotal()

@@ -29,7 +29,7 @@ let processedTotal
 
 let total = 0
 function processInfo (infoToFind, valueToProcess) {
-  console.log('Value of ' + infoToFind + ' is ' + valueToProcess)
+  console.log(`Value of ${infoToFind} is ${valueToProcess}`)
   if (infoToFind === 'Cost') {
     cost = valueToProcess
     total = cost
@@ -57,7 +57,7 @@ function processInfo (infoToFind, valueToProcess) {
   }
 
   if (total) {
-    console.log('total is ' + total)
+    console.log(`total is ${total}`)
   }
 }
 
