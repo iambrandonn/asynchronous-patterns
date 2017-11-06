@@ -2,26 +2,26 @@ var Q = require('q')
 
 function makeDatabaseCall (valueToFind, resolve) {
   var delay = Math.random() * 10000
-  setTimeout(function () {
+  setTimeout(() => {
     let value = valueToFind === 'Cost' ? 100 : valueToFind === 'Tax' ? 15 : 10
     resolve(value)
   }, delay)
 }
 
 function getCostInfo () {
-  return new Promise(function (resolve, reject) {
+  return new Promise((resolve, reject) => {
     makeDatabaseCall('Cost', resolve)
   })
 }
 
 function getTaxInfo () {
-  return new Promise(function (resolve, reject) {
+  return new Promise((resolve, reject) => {
     makeDatabaseCall('Tax', resolve)
   })
 }
 
 function getDiscountInfo () {
-  return new Promise(function (resolve, reject) {
+  return new Promise((resolve, reject) => {
     makeDatabaseCall('Discount', resolve)
   })
 }

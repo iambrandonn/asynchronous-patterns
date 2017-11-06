@@ -1,24 +1,24 @@
 function makeDatabaseCall (valueToFind, resolve) {
-  setTimeout(function () {
+  setTimeout(() => {
     let value = valueToFind === 'Cost' ? 100 : valueToFind === 'Tax' ? 15 : 10
     resolve(value)
   }, 3000)
 }
 
 function getCostInfo () {
-  return new Promise(function (resolve, reject) {
+  return new Promise((resolve, reject) => {
     makeDatabaseCall('Cost', resolve)
   })
 }
 
 function getTaxInfo () {
-  return new Promise(function (resolve, reject) {
+  return new Promise((resolve, reject) => {
     makeDatabaseCall('Tax', resolve)
   })
 }
 
 function getDiscountInfo () {
-  return new Promise(function (resolve, reject) {
+  return new Promise((resolve, reject) => {
     makeDatabaseCall('Discount', resolve)
   })
 }

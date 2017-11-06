@@ -1,25 +1,25 @@
 function makeDatabaseCall (valueToFind, cb) {
   var delay = Math.random() * 10000
-  setTimeout(function () {
+  setTimeout(() => {
     let value = valueToFind === 'Cost' ? 100 : valueToFind === 'Tax' ? 15 : 10
     cb(value)
   }, delay)
 }
 
 function getCostInfo () {
-  makeDatabaseCall('Cost', function (value) {
+  makeDatabaseCall('Cost', value => {
     processInfo('Cost', value)
   })
 }
 
 function getTaxInfo () {
-  makeDatabaseCall('Tax', function (value) {
+  makeDatabaseCall('Tax', value => {
     processInfo('Tax', value)
   })
 }
 
 function getDiscountInfo () {
-  makeDatabaseCall('Discount', function (value) {
+  makeDatabaseCall('Discount', value => {
     processInfo('Discount', value)
   })
 }
