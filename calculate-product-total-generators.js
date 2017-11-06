@@ -1,7 +1,7 @@
-var Q = require('q')
+const Q = require('q')
 
 function makeDatabaseCall (valueToFind, resolve) {
-  var delay = Math.random() * 10000
+  const delay = Math.random() * 10000
   setTimeout(() => {
     let value = valueToFind === 'Cost' ? 100 : valueToFind === 'Tax' ? 15 : 10
     resolve(value)

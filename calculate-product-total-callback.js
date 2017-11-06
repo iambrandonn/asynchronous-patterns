@@ -1,5 +1,5 @@
 function makeDatabaseCall (valueToFind, cb) {
-  var delay = Math.random() * 10000
+  const delay = Math.random() * 10000
   setTimeout(() => {
     let value = valueToFind === 'Cost' ? 100 : valueToFind === 'Tax' ? 15 : 10
     cb(value)
