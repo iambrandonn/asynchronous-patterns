@@ -23,28 +23,18 @@ function getDiscountInfo () {
   })
 }
 
-let total = 0
-let cost
-
 let startTime = Date.now()
 
-getCostInfo()
-  .then(function (value) {
-    cost = value
-    total = cost
-    console.log('total is ' + total)
-    return getTaxInfo()
-  })
-  .then(function (tax) {
-    total = total + tax / 100 * cost
-    console.log('total is ' + total)
-    return getDiscountInfo()
-  })
-  .then(function (discount) {
-    discount = discount / 100 * total
-    total = total - discount
-    console.log('total is ' + total)
-  })
-  .then(() => {
-    console.log(`${(Date.now() - startTime) / 1000} seconds to complete`)
-  })
+Promise.all([
+  getCostInfo(),
+  getTaxInfo(),
+  getDiscountInfo()
+]).then(([cost, tax, discount]) => {
+  let total = cost
+  total = total + tax / 100 * cost
+  discount = discount / 100 * total
+  total = total - discount
+  console.log(`total is ${total}`)
+
+  console.log(`${(Date.now() - startTime) / 1000} seconds to complete`)
+})
