@@ -1,20 +1,8 @@
 function makeDatabaseCallCallback (valueToFind, callback) {
-  const delay = 3000
   setTimeout(() => {
-    switch (valueToFind) {
-      case 'Cost':
-        callback(null, 100)
-        break
-      case 'Tax':
-        callback(null, 15)
-        break
-      case 'Discount':
-        callback(null, 10)
-        break
-      default:
-        callback(new Error(`invalid valueToFind argument: ${valueToFind}`))
-    }
-  }, delay)
+    let value = valueToFind === 'Cost' ? 100 : valueToFind === 'Tax' ? 15 : 10
+    callback(value)
+  }, 3000)
 }
 
 function makeDatabaseCall (valueToFind) {
