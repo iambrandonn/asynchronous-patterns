@@ -1,63 +1,68 @@
-function makeDatabaseCall (valueToFind, cb) {
+let cost
+let tax
+let discount
+let total
+
+function makeDatabaseCall (valueToFind, callback) {
   const delay = Math.random() * 10000
   setTimeout(() => {
-    let value = valueToFind === 'Cost' ? 100 : valueToFind === 'Tax' ? 15 : 10
-    cb(value)
+    switch (valueToFind) {
+      case 'Cost':
+        callback(null, 100)
+        break
+      case 'Tax':
+        callback(null, 15)
+        break
+      case 'Discount':
+        callback(null, 10)
+        break
+      default:
+        callback(new Error(`invalid valueToFind argument: ${valueToFind}`))
+    }
   }, delay)
 }
 
 function getCostInfo () {
-  makeDatabaseCall('Cost', value => {
-    processInfo('Cost', value)
+  makeDatabaseCall('Cost', (err, value) => {
+    if (err) {
+      console.error(err.message)
+      return
+    }
+    console.log(`Cost is ${value}`)
+    cost = value
+    checkForCompletion()
   })
 }
 
 function getTaxInfo () {
-  makeDatabaseCall('Tax', value => {
-    processInfo('Tax', value)
+  makeDatabaseCall('Tax', (err, value) => {
+    if (err) {
+      console.error(err.message)
+      return
+    }
+    console.log(`Tax is ${value}`)
+    tax = value
+    checkForCompletion()
   })
 }
 
 function getDiscountInfo () {
-  makeDatabaseCall('Discount', value => {
-    processInfo('Discount', value)
+  makeDatabaseCall('Discount', (err, value) => {
+    if (err) {
+      console.error(err.message)
+      return
+    }
+    console.log(`Discount is ${value}`)
+    discount = value
+    checkForCompletion()
   })
 }
 
-let cost, tax, discount
-let processedTotal
-
-let total = 0
-function processInfo (infoToFind, valueToProcess) {
-  console.log(`Value of ${infoToFind} is ${valueToProcess}`)
-  if (infoToFind === 'Cost') {
-    cost = valueToProcess
-    total = cost
-  }
-
-  if (infoToFind === 'Tax') {
-    tax = valueToProcess
-    if (cost) {
-      total = cost + tax / 100 * cost
-    }
-  }
-  if (infoToFind === 'Discount') {
-    discount = valueToProcess
-    if (cost && tax) {
-      total = cost + tax / 100 * cost
-      total = total - discount / 100 * total
-      processedTotal = true
-    }
-  }
-
-  if (!processedTotal) {
-    console.log('processing total.....')
+function checkForCompletion () {
+  if (cost && tax && discount) {
     total = cost + tax / 100 * cost
     total = total - discount / 100 * total
-  }
-
-  if (total) {
-    console.log(`total is ${total}`)
+    console.log(`Total is ${total}`)
   }
 }
 
