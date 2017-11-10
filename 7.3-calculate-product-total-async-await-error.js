@@ -26,7 +26,7 @@ async function getCostInfo () {
 }
 
 async function getTaxInfo () {
-  return makeDatabaseCall('Tax')
+  return makeDatabaseCall('Taxes')
 }
 
 async function getDiscountInfo () {
