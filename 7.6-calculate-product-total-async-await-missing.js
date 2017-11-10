@@ -36,7 +36,7 @@ async function getDiscountInfo () {
 async function calculateTotal () {
   let cost = await getCostInfo()
   console.log(`Retrieved cost: ${cost}`)
-  let tax = await getTaxInfo()
+  let tax = getTaxInfo()
   console.log(`Retrieved tax: ${tax}`)
   let total = cost + tax / 100 * cost
 
