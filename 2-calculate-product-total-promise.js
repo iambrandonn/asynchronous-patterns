@@ -1,23 +1,23 @@
-function makeDatabaseCall (valueToFind, resolve) {
+function makeDatabaseCall(valueToFind, resolve) {
   setTimeout(() => {
     let value = valueToFind === 'Cost' ? 100 : valueToFind === 'Tax' ? 15 : 10
     resolve(value)
   }, 3000)
 }
 
-function getCostInfo () {
+function getCostInfo() {
   return new Promise((resolve, reject) => {
     makeDatabaseCall('Cost', resolve)
   })
 }
 
-function getTaxInfo () {
+function getTaxInfo() {
   return new Promise((resolve, reject) => {
     makeDatabaseCall('Tax', resolve)
   })
 }
 
-function getDiscountInfo () {
+function getDiscountInfo() {
   return new Promise((resolve, reject) => {
     makeDatabaseCall('Discount', resolve)
   })
@@ -27,18 +27,21 @@ let total = 0
 let cost
 
 let startTime = Date.now()
+let costInfoPromise = getCostInfo()
+let taxInfoPromise = getTaxInfo()
+let discountInfoPromise = getDiscountInfo()
 
-getCostInfo()
+costInfoPromise
   .then(value => {
     cost = value
     total = cost
     console.log(`total is ${total}`)
-    return getTaxInfo()
+    return taxInfoPromise
   })
   .then(tax => {
     total = total + tax / 100 * cost
     console.log(`total is ${total}`)
-    return getDiscountInfo()
+    return discountInfoPromise
   })
   .then(discount => {
     discount = discount / 100 * total
