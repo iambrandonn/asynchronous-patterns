@@ -1,41 +1,30 @@
-const util = require('util')
-
-function makeDatabaseCallCallback (valueToFind, callback) {
-  const delay = Math.random() * 5000
-  setTimeout(() => {
-    switch (valueToFind) {
-      case 'Cost':
-        callback(null, { field: valueToFind, value: 100 })
-        break
-      case 'Tax':
-        callback(null, { field: valueToFind, value: 15 })
-        break
-      case 'Discount':
-        callback(null, { field: valueToFind, value: 10 })
-        break
-      default:
-        callback(new Error(`invalid valueToFind argument: ${valueToFind}`))
-    }
-  }, delay)
+function querySource1 () {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve([1, 2, 3, 4])
+    }, Math.random() * 7000)
+  })
 }
 
-const makeDatabaseCall = util.promisify(makeDatabaseCallCallback)
-
-function getCostInfo () {
-  return makeDatabaseCall('Cost')
+function querySource2 () {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve([5, 6, 7, 8])
+    }, Math.random() * 7000)
+  })
 }
 
-function getTaxInfo () {
-  return makeDatabaseCall('Tax')
+function querySource3 () {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve([9, 10, 11, 12])
+    }, Math.random() * 7000)
+  })
 }
 
-function getDiscountInfo () {
-  return makeDatabaseCall('Discount')
-}
-
-Promise.race([getCostInfo(), getTaxInfo(), getDiscountInfo()])
+Promise.race([querySource1(), querySource2(), querySource3()])
   .then(resolved => {
-    console.log('First to resolve was:')
+    console.log('First results: ')
     console.log(resolved)
   })
   .catch(err => {

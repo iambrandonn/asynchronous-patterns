@@ -1,4 +1,4 @@
-function makeDatabaseCall(valueToFind, resolve) {
+function makeDatabaseCall (valueToFind, resolve) {
   const delay = Math.random() * 10000
   setTimeout(() => {
     let value = valueToFind === 'Cost' ? 100 : valueToFind === 'Tax' ? 15 : 10
@@ -6,19 +6,19 @@ function makeDatabaseCall(valueToFind, resolve) {
   }, delay)
 }
 
-function getCostInfo() {
+function getCostInfo () {
   return new Promise((resolve, reject) => {
     makeDatabaseCall('Cost', resolve)
   })
 }
 
-function getTaxInfo() {
+function getTaxInfo () {
   return new Promise((resolve, reject) => {
     makeDatabaseCall('Tax', resolve)
   })
 }
 
-function getDiscountInfo() {
+function getDiscountInfo () {
   return new Promise((resolve, reject) => {
     makeDatabaseCall('Discount', resolve)
   })
